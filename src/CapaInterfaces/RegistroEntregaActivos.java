@@ -16,7 +16,7 @@ public class RegistroEntregaActivos extends javax.swing.JDialog {
     /**
      * Creates new form RegistroActivos
      */
-    Validacion validar = new Validacion();
+    Capa_Validaciones.Validaciones validar = new Capa_Validaciones.Validaciones();
     public RegistroEntregaActivos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();

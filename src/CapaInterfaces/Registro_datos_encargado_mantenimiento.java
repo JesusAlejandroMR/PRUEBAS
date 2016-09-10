@@ -14,7 +14,7 @@ public class Registro_datos_encargado_mantenimiento extends javax.swing.JDialog 
     /**
      * Creates new form Registro_datos_encargado_mantenimiento
      */
-    Validacion validar = new Validacion();
+    Capa_Validaciones.Validaciones validar = new Capa_Validaciones.Validaciones();
     public Registro_datos_encargado_mantenimiento(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();

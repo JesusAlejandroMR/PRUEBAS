@@ -14,7 +14,7 @@ public class RegistroMantenimiento extends javax.swing.JDialog {
     /**
      * Creates new form RegistroMantenimiento
      */
-    Validacion validar = new Validacion();
+    Capa_Validaciones.Validaciones validar = new Capa_Validaciones.Validaciones();
     public RegistroMantenimiento(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
