@@ -143,7 +143,6 @@ public class Solicitar_Mantenimiento extends javax.swing.JDialog {
 
         jPanel6.setBackground(new java.awt.Color(117, 214, 255));
 
-        btn_solicitar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Erick\\Documents\\NetBeansProjects\\Control_Activos_Fijos\\ControlActivosFijos\\src\\Icons\\repairing-service (1).png")); // NOI18N
         btn_solicitar.setText("Solicitar");
         btn_solicitar.setBorder(null);
         btn_solicitar.setBorderPainted(false);
@@ -167,7 +166,6 @@ public class Solicitar_Mantenimiento extends javax.swing.JDialog {
             .addGap(0, 15, Short.MAX_VALUE)
         );
 
-        btn_salir.setIcon(new javax.swing.ImageIcon("C:\\Users\\Erick\\Documents\\NetBeansProjects\\Control_Activos_Fijos\\ControlActivosFijos\\src\\Icons\\logout (1).png")); // NOI18N
         btn_salir.setText("Salir");
         btn_salir.setBorder(null);
         btn_salir.setBorderPainted(false);

@@ -14,6 +14,7 @@ public class Registro_datos_encargado_mantenimiento extends javax.swing.JDialog 
     /**
      * Creates new form Registro_datos_encargado_mantenimiento
      */
+    Validacion validar = new Validacion();
     public Registro_datos_encargado_mantenimiento(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -83,12 +84,27 @@ public class Registro_datos_encargado_mantenimiento extends javax.swing.JDialog 
         label3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         label3.setText("Registro Encargado de Mantenimiento");
 
+        txt_nombre_persona.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_nombre_personaFocusLost(evt);
+            }
+        });
+        txt_nombre_persona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_nombre_personaActionPerformed(evt);
+            }
+        });
+        txt_nombre_persona.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_nombre_personaKeyTyped(evt);
+            }
+        });
+
         label2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         label2.setText("Fecha de envio a Mantenimiento");
 
         jPanel6.setBackground(new java.awt.Color(117, 214, 255));
 
-        btn_guardar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Erick\\Documents\\NetBeansProjects\\Control_Activos_Fijos\\ControlActivosFijos\\src\\Icons\\save (1).png")); // NOI18N
         btn_guardar.setText("Guardar");
         btn_guardar.setBorder(null);
         btn_guardar.setBorderPainted(false);
@@ -107,7 +123,6 @@ public class Registro_datos_encargado_mantenimiento extends javax.swing.JDialog 
             .addGap(0, 15, Short.MAX_VALUE)
         );
 
-        btn_salir.setIcon(new javax.swing.ImageIcon("C:\\Users\\Erick\\Documents\\NetBeansProjects\\Control_Activos_Fijos\\ControlActivosFijos\\src\\Icons\\logout (1).png")); // NOI18N
         btn_salir.setText("Salir");
         btn_salir.setBorder(null);
         btn_salir.setBorderPainted(false);
@@ -207,6 +222,25 @@ public class Registro_datos_encargado_mantenimiento extends javax.swing.JDialog 
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txt_nombre_personaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombre_personaActionPerformed
+        // TODO add your handling code here:
+        validar.validadorDeNombres(txt_nombre_persona.getText());
+        
+    }//GEN-LAST:event_txt_nombre_personaActionPerformed
+
+    private void txt_nombre_personaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombre_personaKeyTyped
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txt_nombre_personaKeyTyped
+
+    private void txt_nombre_personaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_nombre_personaFocusLost
+        // TODO add your handling code here:
+        if (validar.validadorDeNombres(txt_nombre_persona.getText())== true){   
+        }else{
+            txt_nombre_persona.requestFocus();
+        }
+    }//GEN-LAST:event_txt_nombre_personaFocusLost
 
     /**
      * @param args the command line arguments

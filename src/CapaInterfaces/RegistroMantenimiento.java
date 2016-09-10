@@ -14,6 +14,7 @@ public class RegistroMantenimiento extends javax.swing.JDialog {
     /**
      * Creates new form RegistroMantenimiento
      */
+    Validacion validar = new Validacion();
     public RegistroMantenimiento(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -326,6 +327,11 @@ public class RegistroMantenimiento extends javax.swing.JDialog {
         label8.setText("Nombres y apellidos");
 
         txt_nombre_encargado.setEnabled(false);
+        txt_nombre_encargado.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_nombre_encargadoFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -355,7 +361,6 @@ public class RegistroMantenimiento extends javax.swing.JDialog {
 
         jPanel6.setBackground(new java.awt.Color(117, 214, 255));
 
-        btn_nuevo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Erick\\Documents\\NetBeansProjects\\Control_Activos_Fijos\\ControlActivosFijos\\src\\Icons\\add-new-file (1).png")); // NOI18N
         btn_nuevo.setText("Nuevo");
         btn_nuevo.setBorder(null);
         btn_nuevo.setBorderPainted(false);
@@ -366,7 +371,6 @@ public class RegistroMantenimiento extends javax.swing.JDialog {
             }
         });
 
-        btn_guardar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Erick\\Documents\\NetBeansProjects\\Control_Activos_Fijos\\ControlActivosFijos\\src\\Icons\\save (1).png")); // NOI18N
         btn_guardar.setText("Guardar");
         btn_guardar.setBorder(null);
         btn_guardar.setBorderPainted(false);
@@ -385,7 +389,6 @@ public class RegistroMantenimiento extends javax.swing.JDialog {
             .addGap(0, 15, Short.MAX_VALUE)
         );
 
-        btn_actualizar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Erick\\Documents\\NetBeansProjects\\Control_Activos_Fijos\\ControlActivosFijos\\src\\Icons\\refresh-page-arrow-button (1).png")); // NOI18N
         btn_actualizar.setText("Actualizar");
         btn_actualizar.setBorder(null);
         btn_actualizar.setBorderPainted(false);
@@ -396,7 +399,6 @@ public class RegistroMantenimiento extends javax.swing.JDialog {
             }
         });
 
-        btn_salir.setIcon(new javax.swing.ImageIcon("C:\\Users\\Erick\\Documents\\NetBeansProjects\\Control_Activos_Fijos\\ControlActivosFijos\\src\\Icons\\logout (1).png")); // NOI18N
         btn_salir.setText("Salir");
         btn_salir.setBorder(null);
         btn_salir.setBorderPainted(false);
@@ -431,7 +433,6 @@ public class RegistroMantenimiento extends javax.swing.JDialog {
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Erick\\Documents\\NetBeansProjects\\Control_Activos_Fijos\\ControlActivosFijos\\src\\Icons\\refresh-page-arrow-button (1).png")); // NOI18N
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
@@ -550,6 +551,14 @@ public class RegistroMantenimiento extends javax.swing.JDialog {
     private void btn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_actualizarActionPerformed
+
+    private void txt_nombre_encargadoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_nombre_encargadoFocusLost
+        // TODO add your handling code here:
+        if (validar.validadorDeNombres(txt_nombre_encargado.getText())== true){   
+        }else{
+            txt_nombre_encargado.requestFocus();
+        }
+    }//GEN-LAST:event_txt_nombre_encargadoFocusLost
 
     /**
      * @param args the command line arguments

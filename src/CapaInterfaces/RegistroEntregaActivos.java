@@ -5,6 +5,8 @@
  */
 package CapaInterfaces;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Karlita
@@ -14,9 +16,11 @@ public class RegistroEntregaActivos extends javax.swing.JDialog {
     /**
      * Creates new form RegistroActivos
      */
+    Validacion validar = new Validacion();
     public RegistroEntregaActivos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
     }
 
     /**
@@ -73,14 +77,38 @@ public class RegistroEntregaActivos extends javax.swing.JDialog {
         label5.setText("Cédula");
 
         txt_cedula_persona.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_cedula_persona.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_cedula_personaFocusLost(evt);
+            }
+        });
+        txt_cedula_persona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_cedula_personaActionPerformed(evt);
+            }
+        });
+        txt_cedula_persona.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_cedula_personaKeyTyped(evt);
+            }
+        });
 
         label6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         label6.setText("Nombres y Apellidos");
 
         txt_nombre_persona.setEditable(false);
         txt_nombre_persona.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_nombre_persona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_nombre_personaActionPerformed(evt);
+            }
+        });
+        txt_nombre_persona.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_nombre_personaKeyTyped(evt);
+            }
+        });
 
-        btn_buscar_persona.setIcon(new javax.swing.ImageIcon("C:\\Users\\Erick\\Documents\\NetBeansProjects\\Control_Activos_Fijos\\ControlActivosFijos\\src\\Icons\\magnifier-tool (1).png")); // NOI18N
         btn_buscar_persona.setBorder(null);
         btn_buscar_persona.setBorderPainted(false);
         btn_buscar_persona.setContentAreaFilled(false);
@@ -128,7 +156,6 @@ public class RegistroEntregaActivos extends javax.swing.JDialog {
 
         jPanel4.setBackground(new java.awt.Color(117, 214, 255));
 
-        btn_nuevo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Erick\\Documents\\NetBeansProjects\\Control_Activos_Fijos\\ControlActivosFijos\\src\\Icons\\add-new-file (1).png")); // NOI18N
         btn_nuevo.setText("Nuevo");
         btn_nuevo.setBorder(null);
         btn_nuevo.setBorderPainted(false);
@@ -139,7 +166,6 @@ public class RegistroEntregaActivos extends javax.swing.JDialog {
             }
         });
 
-        btn_guardar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Erick\\Documents\\NetBeansProjects\\Control_Activos_Fijos\\ControlActivosFijos\\src\\Icons\\save (1).png")); // NOI18N
         btn_guardar.setText("Guardar");
         btn_guardar.setBorder(null);
         btn_guardar.setBorderPainted(false);
@@ -158,7 +184,6 @@ public class RegistroEntregaActivos extends javax.swing.JDialog {
             .addGap(0, 15, Short.MAX_VALUE)
         );
 
-        btn_actualizar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Erick\\Documents\\NetBeansProjects\\Control_Activos_Fijos\\ControlActivosFijos\\src\\Icons\\refresh-page-arrow-button (1).png")); // NOI18N
         btn_actualizar.setText("Actualizar");
         btn_actualizar.setBorder(null);
         btn_actualizar.setBorderPainted(false);
@@ -169,7 +194,6 @@ public class RegistroEntregaActivos extends javax.swing.JDialog {
             }
         });
 
-        btn_salir.setIcon(new javax.swing.ImageIcon("C:\\Users\\Erick\\Documents\\NetBeansProjects\\Control_Activos_Fijos\\ControlActivosFijos\\src\\Icons\\logout (1).png")); // NOI18N
         btn_salir.setText("Salir");
         btn_salir.setBorder(null);
         btn_salir.setBorderPainted(false);
@@ -276,6 +300,37 @@ public class RegistroEntregaActivos extends javax.swing.JDialog {
     private void btn_buscar_personaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscar_personaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_buscar_personaActionPerformed
+
+    private void txt_cedula_personaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cedula_personaKeyTyped
+        // TODO add your handling code here:
+        
+       
+    }//GEN-LAST:event_txt_cedula_personaKeyTyped
+
+    private void txt_cedula_personaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_cedula_personaActionPerformed
+        // TODO add your handling code here:
+         validar.validadorDeCedula(txt_cedula_persona.getText());
+    }//GEN-LAST:event_txt_cedula_personaActionPerformed
+
+    private void txt_cedula_personaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cedula_personaFocusLost
+        // TODO add your handling code here:
+        if (validar.validadorDeCedula(txt_cedula_persona.getText()) == true) {
+        } else {
+            txt_cedula_persona.requestFocus();
+        }
+        
+         
+    }//GEN-LAST:event_txt_cedula_personaFocusLost
+
+    private void txt_nombre_personaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombre_personaKeyTyped
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txt_nombre_personaKeyTyped
+
+    private void txt_nombre_personaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombre_personaActionPerformed
+        // TODO add your handling code here:
+        validar.validadorDeNombres(txt_cedula_persona.getText());
+    }//GEN-LAST:event_txt_nombre_personaActionPerformed
 
     /**
      * @param args the command line arguments
