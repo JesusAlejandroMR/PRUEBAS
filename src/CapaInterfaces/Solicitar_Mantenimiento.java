@@ -5,12 +5,17 @@
  */
 package CapaInterfaces;
 
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Dayanna Luna
  */
 public class Solicitar_Mantenimiento extends javax.swing.JDialog {
-
+    DefaultTableModel model;
+    Capa_Mensajes.Mensajes mensajes = new Capa_Mensajes.Mensajes();
+    Capa_ConexionBD.conexion conexion = new Capa_ConexionBD.conexion(); 
     /**
      * Creates new form Solicitar_Mantenimiento
      */
@@ -18,7 +23,37 @@ public class Solicitar_Mantenimiento extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
-
+    public void combo(){
+        conexion.crearConexion();
+    }
+    public void Detalles_Busqueda() {                       
+        conexion.crearConexion();        
+        String msj="Manco";
+        String [] var1 = new String[10];
+        String [] var2 = {"Tipo", "Marca", "Procesador", "Memoria", "Disco Duro", "Modelo", "Serie", "Costo", "Fecha Compra", "Cod. Institucional"};
+        model =new DefaultTableModel(null,  var2);
+        String sql="select idTipo_activo,marca_activo,precesador_acrtivo,memoria_activo,discoduro_activo,modelo_activo,serie_activo,costo_activo,fechacompra_activo,codigointernoinstitucional_activo from tmovactcon";                
+        ResultSet rs = conexion.ejecutarSQLSelect(sql);         
+        try {            
+            while(rs.next()){                
+                var1[0] = rs.getString(1);
+                var1[1] = rs.getString(2);
+                var1[2] = rs.getString(3);
+                var1[3] = rs.getString(4);
+                var1[4] = rs.getString(5);
+                var1[5] = rs.getString(6);
+                var1[6] = rs.getString(7);
+                var1[7] = rs.getString(8);
+                var1[8] = rs.getString(9);
+                var1[9] = rs.getString(10);
+                model.addRow(var1);
+                tabla_lista_activos.setModel(model);
+            }
+        } catch (Exception ex) {            
+            mensajes.msg_advertencia(msj);
+        }
+       
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -250,7 +285,7 @@ public class Solicitar_Mantenimiento extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_solicitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_solicitarActionPerformed
-        // TODO add your handling code here:
+        Detalles_Busqueda();
     }//GEN-LAST:event_btn_solicitarActionPerformed
 
     /**
