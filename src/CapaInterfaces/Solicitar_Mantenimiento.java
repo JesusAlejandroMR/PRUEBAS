@@ -16,38 +16,38 @@ import javax.swing.table.DefaultTableModel;
  * @author Dayanna Luna
  */
 public class Solicitar_Mantenimiento extends javax.swing.JDialog {
+
     DefaultTableModel model;
     Capa_Mensajes.Mensajes mensajes = new Capa_Mensajes.Mensajes();
-    Capa_ConexionBD.conexion conexion = new Capa_ConexionBD.conexion(); 
+    Capa_ConexionBD.conexion conexion = new Capa_ConexionBD.conexion();
+    int idresponsable_area = 0;
+
     /**
      * Creates new form Solicitar_Mantenimiento
      */
     public Solicitar_Mantenimiento(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+
     }
-    public void combo(){
+
+    public void combo_Tipo_Area() {
+        combo_tipo_area.removeAllItems();
+        combo_tipo_area.addItem("Laboratorio");
+        combo_tipo_area.addItem("Administrativo");
+        combo_tipo_area.addItem("Docentes");
+    }
+
+    public void Detalles_Busqueda() {
         conexion.crearConexion();
-        String sql="select tipo_area from tmaearecon";                
+        String msj = "Manco";
+        String[] var1 = new String[10];
+        String[] var2 = {"Tipo", "Marca", "Procesador", "Memoria", "Disco Duro", "Modelo", "Serie", "Costo", "Fecha Compra", "Cod. Institucional"};
+        model = new DefaultTableModel(null, var2);
+        String sql = "select idTipo_activo,marca_activo,precesador_acrtivo,memoria_activo,discoduro_activo,modelo_activo,serie_activo,costo_activo,fechacompra_activo,codigointernoinstitucional_activo from tmovactcon";
         ResultSet rs = conexion.ejecutarSQLSelect(sql);
         try {
-            while(rs.next()){
-                combo_tipo_area.addItem(rs.getString(1));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Solicitar_Mantenimiento.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    public void Detalles_Busqueda() {                       
-        conexion.crearConexion();        
-        String msj="Manco";
-        String [] var1 = new String[10];
-        String [] var2 = {"Tipo", "Marca", "Procesador", "Memoria", "Disco Duro", "Modelo", "Serie", "Costo", "Fecha Compra", "Cod. Institucional"};
-        model =new DefaultTableModel(null,  var2);
-        String sql="select idTipo_activo,marca_activo,precesador_acrtivo,memoria_activo,discoduro_activo,modelo_activo,serie_activo,costo_activo,fechacompra_activo,codigointernoinstitucional_activo from tmovactcon";                
-        ResultSet rs = conexion.ejecutarSQLSelect(sql);         
-        try {            
-            while(rs.next()){                
+            while (rs.next()) {
                 var1[0] = rs.getString(1);
                 var1[1] = rs.getString(2);
                 var1[2] = rs.getString(3);
@@ -61,11 +61,12 @@ public class Solicitar_Mantenimiento extends javax.swing.JDialog {
                 model.addRow(var1);
                 tabla_lista_activos.setModel(model);
             }
-        } catch (Exception ex) {            
+        } catch (Exception ex) {
             mensajes.msg_advertencia(msj);
         }
-       
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -134,6 +135,19 @@ public class Solicitar_Mantenimiento extends javax.swing.JDialog {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalles Búsqueda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
 
         combo_tipo_area.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar...", "Item 1", "Item 2", "Item 3", "Item 4" }));
+        combo_tipo_area.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                combo_tipo_areaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                combo_tipo_areaFocusLost(evt);
+            }
+        });
+        combo_tipo_area.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                combo_tipo_areaMouseClicked(evt);
+            }
+        });
         combo_tipo_area.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combo_tipo_areaActionPerformed(evt);
@@ -315,8 +329,22 @@ public class Solicitar_Mantenimiento extends javax.swing.JDialog {
     }//GEN-LAST:event_combo_tipo_areaActionPerformed
 
     private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
-        combo();
+
     }//GEN-LAST:event_btn_salirActionPerformed
+
+    private void combo_tipo_areaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_combo_tipo_areaMouseClicked
+        
+    }//GEN-LAST:event_combo_tipo_areaMouseClicked
+
+    private void combo_tipo_areaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_combo_tipo_areaFocusLost
+
+    }//GEN-LAST:event_combo_tipo_areaFocusLost
+
+    private void combo_tipo_areaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_combo_tipo_areaFocusGained
+        if ("Seleccionar...".equals(combo_tipo_area.getSelectedItem().toString())) {
+            combo_Tipo_Area();
+        }        
+    }//GEN-LAST:event_combo_tipo_areaFocusGained
 
     /**
      * @param args the command line arguments
