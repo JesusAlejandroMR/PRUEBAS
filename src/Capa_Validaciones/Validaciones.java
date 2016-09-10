@@ -1,5 +1,13 @@
 package Capa_Validaciones;
 
+import CapaInterfaces.Registro_Solicitud_Mantenimiento;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JTextField;
+
 public class Validaciones {
     //Esta funcion se utiliza para validar tanto modelo como serie en activos
     public static String validarmayusculasynumeros(String texto){
@@ -89,6 +97,19 @@ public class Validaciones {
         }
          return mensaje;
     }
-    
-    
+    // Con este metodo validamos la fecha minima y la fecha maxima que se puede ingresar
+    //OJO esto se llama despues del initComponents()
+    public void validaciondefecha(com.toedter.calendar.JDateChooser fecha_docSolicitud ){
+        ((JTextField) fecha_docSolicitud.getDateEditor()).setEditable(false);  
+        SimpleDateFormat simpleDateFormat_formatoFecha = new SimpleDateFormat("d/MM/yyyy");                 
+        Date date_fechaMinima=null;
+        Date date_fechaMaxima = new Date();        
+        try {            
+            date_fechaMinima= simpleDateFormat_formatoFecha.parse("01/01/2015");
+        } catch (ParseException ex) {
+            Logger.getLogger(Registro_Solicitud_Mantenimiento.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+        fecha_docSolicitud.setSelectableDateRange(date_fechaMinima, date_fechaMaxima);
+    }
+    private com.toedter.calendar.JDateChooser date_fecha_docSolicitud;
 }

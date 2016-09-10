@@ -5,18 +5,27 @@
  */
 package CapaInterfaces;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Dayanna Luna
  */
 public class Registro_Solicitud_Mantenimiento extends javax.swing.JDialog {
-
+     Capa_Validaciones.Validaciones validaciones = new Capa_Validaciones.Validaciones();
     /**
      * Creates new form Registro_Solicitud_Mantenimiento
      */
     public Registro_Solicitud_Mantenimiento(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        validaciones.validaciondefecha(date_fecha_docSolicitud);
+
     }
 
     /**
@@ -76,6 +85,11 @@ public class Registro_Solicitud_Mantenimiento extends javax.swing.JDialog {
         txt_idDocSolicitud_detalleSolicitudMant.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_idDocSolicitud_detalleSolicitudMantActionPerformed(evt);
+            }
+        });
+        txt_idDocSolicitud_detalleSolicitudMant.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_idDocSolicitud_detalleSolicitudMantKeyTyped(evt);
             }
         });
 
@@ -154,7 +168,6 @@ public class Registro_Solicitud_Mantenimiento extends javax.swing.JDialog {
 
         jPanel6.setBackground(new java.awt.Color(117, 214, 255));
 
-        btn_nuevo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Erick\\Documents\\NetBeansProjects\\Control_Activos_Fijos\\ControlActivosFijos\\src\\Icons\\add-new-file (1).png")); // NOI18N
         btn_nuevo.setText("Nuevo");
         btn_nuevo.setBorder(null);
         btn_nuevo.setBorderPainted(false);
@@ -165,7 +178,6 @@ public class Registro_Solicitud_Mantenimiento extends javax.swing.JDialog {
             }
         });
 
-        btn_guardar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Erick\\Documents\\NetBeansProjects\\Control_Activos_Fijos\\ControlActivosFijos\\src\\Icons\\save (1).png")); // NOI18N
         btn_guardar.setText("Guardar");
         btn_guardar.setBorder(null);
         btn_guardar.setBorderPainted(false);
@@ -184,7 +196,6 @@ public class Registro_Solicitud_Mantenimiento extends javax.swing.JDialog {
             .addGap(0, 15, Short.MAX_VALUE)
         );
 
-        btn_actualizar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Erick\\Documents\\NetBeansProjects\\Control_Activos_Fijos\\ControlActivosFijos\\src\\Icons\\refresh-page-arrow-button (1).png")); // NOI18N
         btn_actualizar.setText("Actualizar");
         btn_actualizar.setBorder(null);
         btn_actualizar.setBorderPainted(false);
@@ -195,7 +206,6 @@ public class Registro_Solicitud_Mantenimiento extends javax.swing.JDialog {
             }
         });
 
-        btn_salir.setIcon(new javax.swing.ImageIcon("C:\\Users\\Erick\\Documents\\NetBeansProjects\\Control_Activos_Fijos\\ControlActivosFijos\\src\\Icons\\logout (1).png")); // NOI18N
         btn_salir.setText("Salir");
         btn_salir.setBorder(null);
         btn_salir.setBorderPainted(false);
@@ -230,13 +240,22 @@ public class Registro_Solicitud_Mantenimiento extends javax.swing.JDialog {
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        btn_editar_activosMantenimiento.setIcon(new javax.swing.ImageIcon("C:\\Users\\Erick\\Documents\\NetBeansProjects\\Control_Activos_Fijos\\ControlActivosFijos\\src\\Icons\\1\\pencil (1).png")); // NOI18N
+        date_fecha_docSolicitud.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                date_fecha_docSolicitudMouseClicked(evt);
+            }
+        });
+        date_fecha_docSolicitud.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                date_fecha_docSolicitudKeyTyped(evt);
+            }
+        });
+
         btn_editar_activosMantenimiento.setToolTipText("");
         btn_editar_activosMantenimiento.setBorder(null);
         btn_editar_activosMantenimiento.setBorderPainted(false);
         btn_editar_activosMantenimiento.setContentAreaFilled(false);
 
-        btn_eliminar_activosMantenimiento.setIcon(new javax.swing.ImageIcon("C:\\Users\\Erick\\Documents\\NetBeansProjects\\Control_Activos_Fijos\\ControlActivosFijos\\src\\Icons\\1\\rubbish-bin (2).png")); // NOI18N
         btn_eliminar_activosMantenimiento.setBorder(null);
         btn_eliminar_activosMantenimiento.setBorderPainted(false);
         btn_eliminar_activosMantenimiento.setContentAreaFilled(false);
@@ -366,6 +385,18 @@ public class Registro_Solicitud_Mantenimiento extends javax.swing.JDialog {
     private void btn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_actualizarActionPerformed
+
+    private void date_fecha_docSolicitudKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_date_fecha_docSolicitudKeyTyped
+        date_fecha_docSolicitud.setEnabled(false);
+    }//GEN-LAST:event_date_fecha_docSolicitudKeyTyped
+
+    private void txt_idDocSolicitud_detalleSolicitudMantKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_idDocSolicitud_detalleSolicitudMantKeyTyped
+        
+    }//GEN-LAST:event_txt_idDocSolicitud_detalleSolicitudMantKeyTyped
+
+    private void date_fecha_docSolicitudMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_date_fecha_docSolicitudMouseClicked
+        
+    }//GEN-LAST:event_date_fecha_docSolicitudMouseClicked
 
     /**
      * @param args the command line arguments
