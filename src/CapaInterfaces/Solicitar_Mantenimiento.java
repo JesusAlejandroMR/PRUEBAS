@@ -6,6 +6,9 @@
 package CapaInterfaces;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,6 +28,15 @@ public class Solicitar_Mantenimiento extends javax.swing.JDialog {
     }
     public void combo(){
         conexion.crearConexion();
+        String sql="select tipo_area from tmaearecon";                
+        ResultSet rs = conexion.ejecutarSQLSelect(sql);
+        try {
+            while(rs.next()){
+                combo_tipo_area.addItem(rs.getString(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Solicitar_Mantenimiento.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     public void Detalles_Busqueda() {                       
         conexion.crearConexion();        
@@ -122,6 +134,11 @@ public class Solicitar_Mantenimiento extends javax.swing.JDialog {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalles Búsqueda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
 
         combo_tipo_area.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar...", "Item 1", "Item 2", "Item 3", "Item 4" }));
+        combo_tipo_area.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combo_tipo_areaActionPerformed(evt);
+            }
+        });
 
         jRadioButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jRadioButton1.setText("Tipo de Área");
@@ -205,6 +222,11 @@ public class Solicitar_Mantenimiento extends javax.swing.JDialog {
         btn_salir.setBorder(null);
         btn_salir.setBorderPainted(false);
         btn_salir.setContentAreaFilled(false);
+        btn_salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_salirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -287,6 +309,14 @@ public class Solicitar_Mantenimiento extends javax.swing.JDialog {
     private void btn_solicitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_solicitarActionPerformed
         Detalles_Busqueda();
     }//GEN-LAST:event_btn_solicitarActionPerformed
+
+    private void combo_tipo_areaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_tipo_areaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combo_tipo_areaActionPerformed
+
+    private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
+        combo();
+    }//GEN-LAST:event_btn_salirActionPerformed
 
     /**
      * @param args the command line arguments
